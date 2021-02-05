@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Catlog.Management.Api.Buisness\Catlog.Management.Api.Buisness.csproj" />
+    <ProjectReference Include="..\Catlog.Management.Api.Repository\Catlog.Management.Api.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
