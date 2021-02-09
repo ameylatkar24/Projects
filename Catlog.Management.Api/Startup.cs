@@ -16,6 +16,8 @@ using Catlog.Management.Api.Repository.Repositories;
 using Microsoft.Extensions.Options;
 using Catlog.Management.Api.Repository.Infrastructure;
 using Catlog.Management.Api.Buisness.Infrastructure;
+using AutoMapper;
+using Catlog.Management.Api.Buisness.Mapper;
 
 namespace Catlog.Management.Api
 {
@@ -41,6 +43,9 @@ namespace Catlog.Management.Api
             services.AddTransient<ICatlogContext, CatlogContext>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICatlogBuisness, CatlogBuisness>();
+            //services.AddAutoMapper(typeof(Startup));
+            services.AddAutoMapper(c => c.AddProfile<MapperClass>(), typeof(Startup));
+
 
 
 

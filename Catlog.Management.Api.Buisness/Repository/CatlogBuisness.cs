@@ -7,53 +7,80 @@ using Microsoft.AspNetCore;
 using System.Net;
 
 using Catlog.Management.Api.Buisness.Infrastructure;
-using Catlog.Management.Api.Repository.Infrastructure;
 using Catlog.Management.Api.Repository.Entities;
+using Catlog.Management.Api.Buisness.Entities;
+using Catlog.Management.Api.Repository.Infrastructure;
+using AutoMapper;
+using Catlog.Management.Api.Buisness.Mapper;
 namespace Catlog.Management.Api.Buisness.Repository
 {
     public class CatlogBuisness : ICatlogBuisness
     {
         private readonly IProductRepository _repository;
-        public CatlogBuisness(IProductRepository repository)
+        private readonly IMapper _mapper;
+
+        public CatlogBuisness(IProductRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
+
         }
         public async Task<IEnumerable<ProductEntities>> GetProducts()
         {
-            var products = await _repository.GetProducts();
-            return products;
+            Product prod = new Product();
+            var prodEntity = _mapper.Map<ProductEntities>(prod);
+            return await _repository.GetProducts();
+        }
+
+        public async Task<ProductEntities> CreateProduct(Product product)
+        {
+            var prodent = _mapper.Map<ProductEntities>(product);
+            await _repository.Create(prodent);
+            return prodent;
+
+
 
         }
         public async Task<ProductEntities> GetProductByid(string id)
         {
+            Product prod = new Product();
+            var prodEntity = _mapper.Map<ProductEntities>(prod);
             var product = await _repository.GetProductById(id);
             return (product);
         }
 
-
-        public async Task<ProductEntities> CreateProduct(ProductEntities product)
-        {
-            await _repository.Create(product);
-            return (product);
-        }
-
-
-
-        public async Task<bool> DeleteProductByid(string id)
-        {
-            return await _repository.Delete(id);
-        }
-
-        public async Task<bool> Updateproduct(ProductEntities value)
-        {
-            return (await _repository.Update(value));
-        }
-
         public async Task<IEnumerable<ProductEntities>> GetProductBycategory(string category)
         {
+            Product prod = new Product();
+            var prodEntity = _mapper.Map<ProductEntities>(prod);
+
             return (await _repository.GetProductByCategory(category));
 
         }
+        public async Task<bool> DeleteProductByid(string id)
+        {
+            Product prod = new Product();
+            var prodEntity = _mapper.Map<ProductEntities>(prod);
+
+            return await _repository.Delete(id);
+        }
+
+        public async Task<bool> Updateproduct(Product value)
+        {
+            var prodent = _mapper.Map<ProductEntities>(value);
+            return (await _repository.Update(prodent));
+        }
+
+        /*
+
+
+
+
+
+
+
+
+*/
 
     }
 }

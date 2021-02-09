@@ -22,7 +22,7 @@ namespace Catlog.Management.Api.Repository.Entities
 
         public string ImageFile { get; set; }
 
-        public string Price { get; set; }
+        public decimal Price { get; set; }
 
     }
 }
