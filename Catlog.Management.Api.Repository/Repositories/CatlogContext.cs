@@ -11,7 +11,7 @@ namespace Catlog.Management.Api.Repository.Repositories
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
             Products = database.GetCollection<ProductEntities>(settings.CollectionName);
-            CatlogContextSeed.SeedData(Products);
+            //CatlogContextSeed.SeedData(Products);
         }
         public IMongoCollection<ProductEntities> Products { get; }
     }

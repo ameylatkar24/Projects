@@ -14,14 +14,21 @@ namespace Catlog.Management.Api.Buisness.Entities
         [BsonRepresentation(BsonType.ObjectId)]
 
         public string id { get; set; }
+        //[BsonRepresentation(BsonType.String)]
         public string name { get; set; }
+        // [BsonRepresentation(BsonType.String)]
+
         public string category { get; set; }
+        // [BsonRepresentation(BsonType.String)]
 
         public string summary { get; set; }
+        //[BsonRepresentation(BsonType.String)]
 
         public string description { get; set; }
+        //[BsonRepresentation(BsonType.String)]
 
         public string imageFile { get; set; }
+        [BsonRepresentation(BsonType.Decimal128)]
 
         public decimal price { get; set; }
 
