@@ -1,8 +1,12 @@
 using System.Threading.Tasks;
 using MongoDB.Driver;
+using System;
 using Catlog.Management.Api.Repository.Infrastructure;
 using Catlog.Management.Api.Repository.Entities;
 using System.Collections.Generic;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
+using System.Text.Json;
 
 namespace Catlog.Management.Api.Repository.Repositories
 {
@@ -12,6 +16,7 @@ namespace Catlog.Management.Api.Repository.Repositories
         public ProductRepository(ICatlogContext catlogContext)
         {
             _catlogContext = catlogContext;
+
         }
         public async Task<IEnumerable<ProductEntities>> GetProducts()
         {
@@ -32,10 +37,12 @@ namespace Catlog.Management.Api.Repository.Repositories
         public async Task<IEnumerable<ProductEntities>> GetProductByCategory(string category)
         {
             FilterDefinition<ProductEntities> filter = Builders<ProductEntities>.Filter.ElemMatch(p => p.Category, category);
+
             return await _catlogContext
                          .Products
                          .Find(filter)
                          .ToListAsync();
+
 
         }
 
@@ -72,6 +79,10 @@ namespace Catlog.Management.Api.Repository.Repositories
 
         }
 
-
+        public long TotalCount()
+        {
+            //var query = _catlogContext.Products.Find(p => true);
+            return _catlogContext.Products.CountDocuments(p => true);
+        }
     }
 }

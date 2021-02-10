@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Catlog.Management.Api.Buisness.Repository;
-//using Catlog.Management.Api.Repository.Entities;
+using Catlog.Management.Api.Repository.Entities;
 using Catlog.Management.Api.Buisness.Infrastructure;
 //using Catlog.Management.Api.Buisness.Mapper;
 using Catlog.Management.Api.Buisness.Entities;
@@ -72,16 +72,14 @@ namespace Catlog.Management.Api.Controllers
         {
             return Ok(await _buisness.Updateproduct(value));
         }
-        /*
+        [HttpGet("count")]
+        public ActionResult<int> County()
+        {
+            return Ok(_buisness.Counting());
+        }
 
 
 
 
-
-
-
-
-
-        */
     }
 }

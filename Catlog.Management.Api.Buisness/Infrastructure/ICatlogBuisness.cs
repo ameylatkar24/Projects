@@ -23,7 +23,8 @@ namespace Catlog.Management.Api.Buisness.Infrastructure
         Task<bool> DeleteProductByid(string id);
         Task<bool> Updateproduct(Product value);
 
+        long Counting();
         /*
-    */
+   */
     }
 }

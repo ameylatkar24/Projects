@@ -19,5 +19,7 @@ namespace Catlog.Management.Api.Repository.Infrastructure
 
         Task<bool> Delete(string id);
 
+        long TotalCount();
+
     }
 }

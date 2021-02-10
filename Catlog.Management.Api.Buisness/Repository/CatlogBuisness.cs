@@ -70,6 +70,21 @@ namespace Catlog.Management.Api.Buisness.Repository
             var prodent = _mapper.Map<ProductEntities>(value);
             return (await _repository.Update(prodent));
         }
+        public int countItems()
+        {
+            ProductEntities p = new ProductEntities();
+
+            List<string> counting = new List<string>();
+
+            counting.Add(p.Name);
+            Console.WriteLine(counting.Count());
+            return counting.Count();
+        }
+
+        public long Counting()
+        {
+            return _repository.TotalCount();
+        }
 
         /*
 
